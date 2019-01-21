@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SVAuto.DAL\SVAuto.DAL.csproj" />
     <ProjectReference Include="..\SVAuto.EF\SVAuto.EF.csproj" />
   </ItemGroup>
 
