@@ -5,14 +5,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using SVAuto.Web.Extensions;
 
 namespace SVAuto.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private ILogger<Startup> logger;
+
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
+            this.logger = logger;
         }
 
         public IConfiguration Configuration { get; }
@@ -36,6 +41,7 @@ namespace SVAuto.Web
         {
             if (env.IsDevelopment())
             {
+                logger.LogDebug("Started in development environment");
                 app.UseDeveloperExceptionPage();
             }
             else

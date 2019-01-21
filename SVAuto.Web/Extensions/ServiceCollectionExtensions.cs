@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SVAuto.DAL;
 using SVAuto.Global;
 
-namespace SVAuto.Web
+namespace SVAuto.Web.Extensions
 {
     public static class ServiceCollectionExtensions
     {
@@ -12,7 +12,8 @@ namespace SVAuto.Web
         {
             services.AddDbContext<SVAutoDbContext>(options =>
             {
-                options.UseSqlite(configuration.GetConnectionString(SVAutoConfiguration.SVAutoConnectionString));
+                var connectionString = configuration.GetConnectionString(SVAutoConfiguration.SVAutoConnectionString);
+                options.UseSqlite(connectionString);
             });
 
             return services;

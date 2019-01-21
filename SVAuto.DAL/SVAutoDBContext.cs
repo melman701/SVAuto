@@ -15,6 +15,7 @@ namespace SVAuto.DAL
         public SVAutoDbContext(DbContextOptions<SVAutoDbContext> options, IConfiguration configuration) : base(options)
         {
             Configuration = configuration;
+            //Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
