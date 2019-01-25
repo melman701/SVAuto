@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SVAuto.BL.Handlers.OrderHandlers;
 using SVAuto.DAL;
-using SVAuto.DAL.Repositories;
+using SVAuto.DAL.Repositories.SVAutoRepositories;
 using SVAuto.Global;
 
 namespace SVAuto.Web.Extensions

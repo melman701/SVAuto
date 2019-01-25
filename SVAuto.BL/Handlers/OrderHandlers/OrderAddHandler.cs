@@ -5,12 +5,11 @@ using SVAuto.EF.Model;
 
 namespace SVAuto.BL.Handlers.OrderHandlers
 {
-    public class OrderGetAllHandler
-        : BaseGetAllHandler<Order>
+    public class OrderAddHandler
+        : BaseAddHandler<Order>
     {
-        public OrderGetAllHandler(
-            IOrderRepository orderRepository,
-            ILogger<OrderGetAllHandler> logger)
+        public OrderAddHandler(IOrderRepository orderRepository,
+            ILogger<OrderAddHandler> logger)
             : base(orderRepository, logger)
         {
 

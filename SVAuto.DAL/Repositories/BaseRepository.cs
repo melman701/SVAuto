@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
+using SVAuto.EF.Model;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +9,7 @@ namespace SVAuto.DAL.Repositories
     public class BaseRepository<TContext, TEntity>
         : IBaseRepository<TContext, TEntity>
         where TContext : DbContext
-        where TEntity : class
+        where TEntity : class, IBaseEntity
     {
         private readonly ILogger logger;
 
@@ -21,35 +21,55 @@ namespace SVAuto.DAL.Repositories
 
         public TContext DbContext { get; }
 
-        public void Add(TEntity entity)
+        public virtual DbSet<TEntity> DefaultSet => DbContext.Set<TEntity>();
+
+        public virtual void Add(TEntity entity)
         {
-            throw new NotImplementedException();
+            logger.LogDebug($"Add enity: {entity}");
+            DefaultSet.Add(entity);
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
-            throw new NotImplementedException();
+            if (id <= 0)
+            {
+                logger.LogWarning($"Try to get entity with invalid id {id}");
+                return null;
+            }
+
+            logger.LogDebug($"Get {typeof(TEntity).Name} with id {id}");
+            return DefaultSet.SingleOrDefault(x => x.Id == id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
-            logger.LogDebug($"Get all {typeof(TEntity).Name} data");
-            return DbContext.Set<TEntity>().ToList();
+            logger.LogDebug($"Get all {typeof(TEntity).Name}");
+            return DefaultSet.ToList();
         }
 
-        public void Remove(int id)
+        public virtual void Remove(int id)
         {
-            throw new NotImplementedException();
+            logger.LogDebug($"Remove {typeof(TEntity).Name} with id {id}");
+            var entity = Get(id);
+            Remove(entity);
         }
 
-        public void Remove(TEntity entity)
+        public virtual void Remove(TEntity entity)
         {
-            throw new NotImplementedException();
+            logger.LogDebug($"Remove entity: {entity}");
+            DefaultSet.Remove(entity);
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            logger.LogDebug($"Update entity: {entity}");
+            DefaultSet.Update(entity);
+        }
+
+        public virtual void SaveChanges()
+        {
+            logger.LogDebug($"Save changes into database");
+            DbContext.SaveChanges();
         }
     }
 }

@@ -9,6 +9,8 @@ namespace SVAuto.DAL.Repositories
     {
         TContext DbContext { get; }
 
+        DbSet<TEntity> DefaultSet { get; }
+
         IEnumerable<TEntity> GetAll();
 
         TEntity Get(int id);
@@ -17,5 +19,7 @@ namespace SVAuto.DAL.Repositories
         void Add(TEntity entity);
         void Update(TEntity entity);
         void Remove(TEntity entity);
+
+        void SaveChanges();
     }
 }

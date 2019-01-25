@@ -15,10 +15,23 @@ namespace SVAuto.Web.Controllers
     public class OrderController : Controller
     {
         private readonly OrderGetAllHandler orderGetAllHandler;
+        private readonly OrderAddHandler orderAddHandler;
+        private readonly OrderGetHandler orderGetHandler;
+        private readonly OrderRemoveHandler orderRemoveHandler;
+        private readonly OrderUpdateHandler orderUpdateHandler;
 
-        public OrderController(OrderGetAllHandler orderGetAllHandler)
+        public OrderController(
+            OrderGetAllHandler orderGetAllHandler,
+            OrderAddHandler orderAddHandler,
+            OrderGetHandler orderGetHandler,
+            OrderRemoveHandler orderRemoveHandler,
+            OrderUpdateHandler orderUpdateHandler)
         {
             this.orderGetAllHandler = orderGetAllHandler;
+            this.orderAddHandler = orderAddHandler;
+            this.orderGetHandler = orderGetHandler;
+            this.orderRemoveHandler = orderRemoveHandler;
+            this.orderUpdateHandler = orderUpdateHandler;
         }
 
         // GET: api/<controller>
@@ -36,27 +49,54 @@ namespace SVAuto.Web.Controllers
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var result = orderGetHandler.Execute(id);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+
+            return BadRequest(result.FirstError.Message);
         }
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]Order order)
         {
+            var result = orderAddHandler.Execute(order);
+            if (result.Success)
+            {
+                return Ok();
+            }
+
+            return BadRequest(result.FirstError.Message);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]Order order)
         {
+            var result = orderUpdateHandler.Execute(order);
+            if (result.Success)
+            {
+                return Ok();
+            }
+
+            return BadRequest(result.FirstError.Message);
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var result = orderRemoveHandler.Execute(id);
+            if (result.Success)
+            {
+                return Ok();
+            }
+
+            return BadRequest(result.FirstError.Message);
         }
     }
 }

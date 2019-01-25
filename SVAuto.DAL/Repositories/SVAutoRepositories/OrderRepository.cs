@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using SVAuto.EF.Model;
 
-namespace SVAuto.DAL.Repositories
+namespace SVAuto.DAL.Repositories.SVAutoRepositories
 {
-    public interface IOrderRepository : IBaseRepository<SVAutoDbContext, Order>
+    public interface IOrderRepository : ISVAutoBaseRepository<Order>
     {
 
     }
