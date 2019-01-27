@@ -9,7 +9,7 @@ namespace SVAuto.DAL.Repositories.SVAutoRepositories
     }
 
 
-    public class OrderRepository : BaseRepository<SVAutoDbContext, Order>, IOrderRepository
+    public class OrderRepository : SVAutoBaseRepository<Order>, IOrderRepository
     {
         public OrderRepository(SVAutoDbContext dbContext, ILogger<OrderRepository> logger)
             : base(dbContext, logger)

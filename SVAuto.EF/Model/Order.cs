@@ -11,6 +11,7 @@ namespace SVAuto.EF.Model
         public DateTimeOffset CreationDateTime { get; set; }
         public DateTimeOffset ModificationDateTime { get; set; }
 
-        public OrderStatus Status { get; set; }
+        public int StatusId { get; set; }
+        public virtual OrderStatus Status { get; set; }
     }
 }

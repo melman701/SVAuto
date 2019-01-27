@@ -18,9 +18,11 @@ namespace SVAuto.EF.EntityConfigurations
                 .IsRequired()
                 .HasMaxLength(100);
             builder.Property(o => o.CreationDateTime)
-                .HasDefaultValueSql("getdate()");
+                .IsRequired();
             builder.Property(o => o.ModificationDateTime)
-                .HasDefaultValueSql("getdate()");
+                .IsRequired();
+            builder.Property(o => o.StatusId)
+                .IsRequired();
         }
     }
 }

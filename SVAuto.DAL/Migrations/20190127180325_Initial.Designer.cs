@@ -9,8 +9,8 @@ using SVAuto.DAL;
 namespace SVAuto.DAL.Migrations
 {
     [DbContext(typeof(SVAutoDbContext))]
-    [Migration("20190121183837_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190127180325_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,13 +27,9 @@ namespace SVAuto.DAL.Migrations
 
                     b.Property<string>("Client");
 
-                    b.Property<DateTimeOffset>("CreationDateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("getdate()");
+                    b.Property<DateTimeOffset>("CreationDateTime");
 
-                    b.Property<DateTimeOffset>("ModificationDateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("getdate()");
+                    b.Property<DateTimeOffset>("ModificationDateTime");
 
                     b.Property<string>("Part")
                         .IsRequired()
@@ -43,7 +39,7 @@ namespace SVAuto.DAL.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int?>("StatusId");
+                    b.Property<int>("StatusId");
 
                     b.HasKey("Id");
 
@@ -72,8 +68,9 @@ namespace SVAuto.DAL.Migrations
             modelBuilder.Entity("SVAuto.EF.Model.Order", b =>
                 {
                     b.HasOne("SVAuto.EF.Model.OrderStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId");
+                        .WithMany("Orders")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

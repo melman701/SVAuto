@@ -41,7 +41,7 @@ namespace SVAuto.Web.Controllers
             var result = orderGetAllHandler.Execute();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result.Data.ToList());
             }
 
             return BadRequest(result.FirstError.Message);
@@ -64,6 +64,9 @@ namespace SVAuto.Web.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Order order)
         {
+            order.CreationDateTime = DateTimeOffset.Now;
+            order.ModificationDateTime = DateTimeOffset.Now;
+
             var result = orderAddHandler.Execute(order);
             if (result.Success)
             {
@@ -77,6 +80,8 @@ namespace SVAuto.Web.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Order order)
         {
+            order.ModificationDateTime = DateTimeOffset.Now;
+
             var result = orderUpdateHandler.Execute(order);
             if (result.Success)
             {

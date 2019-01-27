@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SVAuto.BL.Handlers.OrderHandlers;
+using SVAuto.BL.Handlers.OrderStatusHandlers;
 using SVAuto.DAL;
 using SVAuto.DAL.Repositories.SVAutoRepositories;
 using SVAuto.Global;
@@ -18,7 +19,9 @@ namespace SVAuto.Web.Extensions
             {
                 var connectionString = configuration.GetConnectionString(
                     SVAutoConfiguration.SVAutoConnectionString);
-                options.UseSqlite(connectionString);
+                options
+                    .UseLazyLoadingProxies()
+                    .UseSqlite(connectionString);
             });
 
             return services;
@@ -29,6 +32,17 @@ namespace SVAuto.Web.Extensions
         {
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<OrderGetAllHandler>();
+            services.AddScoped<OrderGetHandler>();
+            services.AddScoped<OrderAddHandler>();
+            services.AddScoped<OrderRemoveHandler>();
+            services.AddScoped<OrderUpdateHandler>();
+
+            services.AddScoped<IOrderStatusRepository, OrderStatusRepository>();
+            services.AddScoped<OrderStatusGetAllHandler>();
+            services.AddScoped<OrderStatusGetHandler>();
+            services.AddScoped<OrderStatusAddHandler>();
+            services.AddScoped<OrderStatusRemoveHandler>();
+            services.AddScoped<OrderStatusUpdateHandler>();
 
             return services;
         }

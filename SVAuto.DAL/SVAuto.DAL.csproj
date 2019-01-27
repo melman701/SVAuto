@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Migrations\20190121183837_InitialCreate.Designer.cs">
-      <DependentUpon>20190121183837_InitialCreate.cs</DependentUpon>
+    <Compile Update="Migrations\20190127180325_Initial.Designer.cs">
+      <DependentUpon>20190127180325_Initial.cs</DependentUpon>
     </Compile>
   </ItemGroup>
 

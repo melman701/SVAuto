@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SVAuto.DAL.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,9 +31,9 @@ namespace SVAuto.DAL.Migrations
                     Phone = table.Column<string>(maxLength: 50, nullable: false),
                     Car = table.Column<string>(nullable: true),
                     Part = table.Column<string>(maxLength: 100, nullable: false),
-                    CreationDateTime = table.Column<DateTimeOffset>(nullable: false, defaultValueSql: "getdate()"),
-                    ModificationDateTime = table.Column<DateTimeOffset>(nullable: false, defaultValueSql: "getdate()"),
-                    StatusId = table.Column<int>(nullable: true)
+                    CreationDateTime = table.Column<DateTimeOffset>(nullable: false),
+                    ModificationDateTime = table.Column<DateTimeOffset>(nullable: false),
+                    StatusId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +43,7 @@ namespace SVAuto.DAL.Migrations
                         column: x => x.StatusId,
                         principalTable: "OrderStatuses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

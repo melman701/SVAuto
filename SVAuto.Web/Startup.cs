@@ -28,7 +28,9 @@ namespace SVAuto.Web
             services.AddCustomDependencyInjection();
             services.AddCustomDbContext(Configuration);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling
+                    = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

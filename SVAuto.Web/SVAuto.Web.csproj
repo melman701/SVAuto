@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.0.0-preview-18579-0056" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0-preview-18579-0056" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0-preview.18572.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.0.0-preview.18572.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0-preview.18572.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
