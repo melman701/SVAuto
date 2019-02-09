@@ -19,7 +19,18 @@ export class StoreService {
       cost: 223,
       creationDate: new Date(Date.now()),
       modificationDate: new Date(Date.now()),
-      statusId: 1
+      status: this.orderStatuses[1]
+    },
+    {
+      id: 2,
+      client: "Petrov",
+      phone: "787687623",
+      car: "Audi",
+      part: "Engine",
+      cost: 2342,
+      creationDate: new Date(Date.now()),
+      modificationDate: new Date(Date.now()),
+      status: this.orderStatuses[0]
     }
   ];
 

@@ -1,3 +1,5 @@
+import { OrderStatus } from "./order-status";
+
 export class Order {
   public id: number;
   public client: string;
@@ -7,5 +9,6 @@ export class Order {
   public cost: number;
   public creationDate: Date;
   public modificationDate: Date;
-  public statusId: number;
+
+  public status: OrderStatus;
 }

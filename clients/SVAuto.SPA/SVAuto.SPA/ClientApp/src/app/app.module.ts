@@ -3,6 +3,16 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatTableModule,
+  MatButtonModule,
+  MatCheckboxModule,
+  MatInputModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatFormFieldModule
+} from '@angular/material'
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -29,7 +39,15 @@ import { SimpleStoreComponent } from './simple-store/simple-store.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'store', component: SimpleStoreComponent },
-    ])
+    ]),
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
