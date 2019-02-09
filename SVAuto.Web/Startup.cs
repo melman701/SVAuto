@@ -28,7 +28,7 @@ namespace SVAuto.Web
             services.AddCustomDependencyInjection();
             services.AddCustomDbContext(Configuration);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling
                     = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
