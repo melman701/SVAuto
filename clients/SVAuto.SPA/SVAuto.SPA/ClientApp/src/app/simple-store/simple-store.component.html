@@ -1,0 +1,24 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Клиент</th>
+        <th>Phone</th>
+        <th>Car</th>
+        <th>Part</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{order.id}}</td>
+        <td>{{order.client}}</td>
+        <td>{{order.phone}}</td>
+        <td>{{order.car}}</td>
+        <td>{{order.part}}</td>
+        <td>{{order.cost}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
