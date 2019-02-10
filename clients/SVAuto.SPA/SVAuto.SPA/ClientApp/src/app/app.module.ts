@@ -12,7 +12,7 @@ import {
   MatSortModule,
   MatPaginatorModule,
   MatFormFieldModule
-} from '@angular/material'
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
